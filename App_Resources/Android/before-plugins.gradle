@@ -1,0 +1,30 @@
+// this configurations is loaded before building plugins, as well as before building
+// the app - this is where you can apply global settings and overrides
+
+// Mitigate transient Maven/network issues during classpath resolution.
+// This runs early enough to affect dependency downloads in configuration phase.
+if (!System.getProperty('org.gradle.internal.http.connectionTimeout')) {
+  System.setProperty('org.gradle.internal.http.connectionTimeout', '120000')
+}
+if (!System.getProperty('org.gradle.internal.http.socketTimeout')) {
+  System.setProperty('org.gradle.internal.http.socketTimeout', '120000')
+}
+if (!System.getProperty('org.gradle.internal.repository.max.retries')) {
+  System.setProperty('org.gradle.internal.repository.max.retries', '5')
+}
+if (!System.getProperty('org.gradle.internal.repository.initial.backoff')) {
+  System.setProperty('org.gradle.internal.repository.initial.backoff', '1000')
+}
+
+project.ext {
+  // androidXAppCompat = "1.4.1"
+  // androidXExifInterface = "1.3.3"
+  // androidXFragment = "1.4.1"
+  // androidXMaterial = "1.5.0"
+  // androidXMultidex = "2.0.1"
+  // androidXTransition = "1.4.1"
+  // androidXViewPager = "1.0.0"
+
+  // useKotlin = true
+  // kotlinVersion = "1.6.0"
+}
