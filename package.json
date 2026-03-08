@@ -6,7 +6,7 @@
   "dependencies": {
     "@nativescript-community/solid-js": "^0.1.2",
     "@nativescript/core": "~9.0.0",
-    "@nativescript/tanstack-router": "^0.0.2",
+    "@nativescript/tanstack-router": "^0.0.3",
     "@tanstack/history": "^1.100.0",
     "@tanstack/solid-router": "^1.166.0",
     "@triniwiz/nativescript-image-cache-it": "^8.0.1",
