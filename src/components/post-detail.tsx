@@ -45,7 +45,7 @@ export default function PostDetail() {
               class="bg-white dark:bg-[#0f182d] rounded-[24]"
               style="overflow: hidden;"
             >
-              <imagecacheit src={data().post.coverUrl} stretch="aspectFill" />
+              <imagecacheit src={data().post.coverUrl} stretch="aspectFill" class="rounded-[24]" />
               <stacklayout
                 class="bg-black/45 rounded-[24] p-4"
                 verticalAlignment="bottom"

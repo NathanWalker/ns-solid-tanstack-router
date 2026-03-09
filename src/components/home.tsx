@@ -61,7 +61,7 @@ export default function Home() {
     <>
       <actionbar title="TanStack Router" iosLargeTitle={true} />
       <scrollview class="bg-[#edf1f9] dark:bg-[#070d1b]">
-        <stacklayout class="px-5 pt-4 pb-8" iosOverflowSafeAreaEnabled={false}>
+        <stacklayout class="px-5 pt-4 pb-20" iosOverflowSafeAreaEnabled={false}>
           <gridlayout columns="*, auto" rows="auto" class="mb-4">
             <stacklayout col="0">
               <label
@@ -102,6 +102,7 @@ export default function Home() {
                 row="0"
                 src={featured().coverUrl}
                 stretch="aspectFill"
+                class="rounded-[24]"
               />
 
               <stacklayout
