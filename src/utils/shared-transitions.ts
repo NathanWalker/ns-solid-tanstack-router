@@ -10,7 +10,7 @@ export function createPostAuthorSharedTransitionState(authorId: string) {
     SharedTransition.custom(new PageTransition(), {
       pageEnd: {
         // use nice linear duration on Android
-        duration: __ANDROID__ ? 800 : null,
+        duration: __ANDROID__ ? 400 : null,
         // use custom spring on iOS
         spring: { tension: 60, friction: 8, mass: 1 },
       },
