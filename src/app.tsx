@@ -217,11 +217,13 @@ declare module "@nativescript/tanstack-router/solid" {
 
 const App = () => {
   return (
-    <NativeScriptRouterProvider
-      router={router}
-      debug={true}
-      actionBarVisibility="never"
-    />
+    <gridlayout>
+      <NativeScriptRouterProvider
+        router={router}
+        debug={true}
+        actionBarVisibility="never"
+      />
+    </gridlayout>
   );
 };
 

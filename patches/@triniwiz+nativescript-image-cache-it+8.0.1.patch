@@ -1,0 +1,69 @@
+diff --git a/node_modules/@triniwiz/nativescript-image-cache-it/nativescript.config.ts b/node_modules/@triniwiz/nativescript-image-cache-it/nativescript.config.ts
+index fd51f4e..4cd515b 100644
+--- a/node_modules/@triniwiz/nativescript-image-cache-it/nativescript.config.ts
++++ b/node_modules/@triniwiz/nativescript-image-cache-it/nativescript.config.ts
+@@ -11,4 +11,14 @@ export default {
+ 			},
+ 		],
+ 	},
++	visionos: {
++		SPMPackages: [
++			{
++				name: 'SDWebImage',
++				libs: ['SDWebImage'],
++				repositoryURL: 'https://github.com/SDWebImage/SDWebImage.git',
++				version: '5.21.2',
++			},
++		],
++	},
+ } as NativeScriptConfig;
+diff --git a/node_modules/@triniwiz/nativescript-image-cache-it/platforms/ios/src/ImageCacheItUtils.swift b/node_modules/@triniwiz/nativescript-image-cache-it/platforms/ios/src/ImageCacheItUtils.swift
+index 3140714..0cb4bb8 100644
+--- a/node_modules/@triniwiz/nativescript-image-cache-it/platforms/ios/src/ImageCacheItUtils.swift
++++ b/node_modules/@triniwiz/nativescript-image-cache-it/platforms/ios/src/ImageCacheItUtils.swift
+@@ -35,16 +35,27 @@ public class ImageCacheItUtils: NSObject {
+       return CIContext()
+     }else {
+ 
++#if !os(visionOS)
+       let context = EAGLContext(api: .openGLES3) ?? EAGLContext(api: .openGLES2)
+ 
+       if(context != nil){
+         return CIContext(eaglContext: context!)
+       }
++#endif
+ 
+       return CIContext()
+     }
+   }
+ 
++  private static func displayScale() -> CGFloat {
++#if os(visionOS)
++    // UIScreen APIs are unavailable on visionOS; use the current trait collection scale.
++    return UITraitCollection.current.displayScale
++#else
++    return UIScreen.main.scale
++#endif
++  }
++  
+   
+   public static func resizeImage(_ image: UIImage? , _ width: CGFloat,_ height: CGFloat, _ scale: SDImageScaleMode, _ callback: @escaping (UIImage?)-> Void, _ queue: DispatchQueue?) -> DispatchQueue? {
+     let current = CFRunLoopGetCurrent()
+@@ -245,7 +256,7 @@ public class ImageCacheItUtils: NSObject {
+               }
+             }else if(size.contains("px")){
+               if let px = Float(size.replacingOccurrences(of: "px", with: "")) {
+-                width = CGFloat(px) * UIScreen.main.scale
++                width = CGFloat(px) * displayScale()
+               }
+             }else if(size.contains("dip")) {
+               if let dip = Float(size.replacingOccurrences(of: "dip", with: "")) {
+@@ -506,7 +517,7 @@ public class ImageCacheItUtils: NSObject {
+               }
+             }else if(size.contains("px")){
+               if let px = Float(size.replacingOccurrences(of: "px", with: "")) {
+-                width = CGFloat(px) * UIScreen.main.scale
++                width = CGFloat(px) * displayScale()
+               }
+             }else if(size.contains("dip")) {
+               if let dip = Float(size.replacingOccurrences(of: "dip", with: "")) {
