@@ -1,5 +1,3 @@
-import { Link } from "@nativescript/tanstack-router/solid";
-
 export default function About() {
   return (
     <>

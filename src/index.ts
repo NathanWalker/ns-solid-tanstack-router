@@ -1,6 +1,6 @@
 import { render } from "@nativescript-community/solid-js";
 import { Application } from "@nativescript/core";
-import { registerElement } from "dominative";
+import { document, registerElement } from "dominative";
 import { ImageCacheIt } from "@triniwiz/nativescript-image-cache-it";
 import { App } from "./app";
 
