@@ -228,6 +228,32 @@ export default function Home() {
             </stacklayout>
           </gridlayout>
 
+          <gridlayout
+            columns="*, auto"
+            rows="auto"
+            class="mt-3 bg-white dark:bg-[#0f182d] rounded-[22] p-4"
+          >
+            <stacklayout col="0">
+              <label
+                text="/virtual"
+                class="text-lg font-bold text-[#101522] dark:text-[#f2f6ff]"
+              />
+              <label
+                text="Virtual route config + physical('.') mounted together"
+                class="text-[#8790a2] dark:text-[#9aa7c7] text-[13px] mt-1 leading-[3]"
+                textWrap={true}
+              />
+            </stacklayout>
+            <stacklayout col="1">
+              <Link to="/virtual">
+                <label
+                  text="Open"
+                  class="bg-[#e6f7ef] dark:bg-[#18382c] text-[#1f8a5b] dark:text-[#7de0b2] rounded-full px-4 py-2 text-[14px]"
+                />
+              </Link>
+            </stacklayout>
+          </gridlayout>
+
           <label
             text="Trending"
             class="text-[#1b1f28] dark:text-[#f2f6ff] text-2xl font-bold mt-5"
