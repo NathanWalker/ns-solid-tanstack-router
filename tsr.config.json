@@ -1,0 +1,34 @@
+{
+  "routesDirectory": "./src/routes",
+  "generatedRouteTree": "./src/routeTree.gen.ts",
+  "virtualRouteConfig": {
+    "type": "root",
+    "file": "__root.tsx",
+    "children": [
+      {
+        "type": "physical",
+        "directory": ".",
+        "pathPrefix": ""
+      },
+      {
+        "type": "route",
+        "path": "virtual",
+        "file": "-virtual/layout.tsx",
+        "children": [
+          {
+            "type": "index",
+            "file": "-virtual/index.tsx"
+          },
+          {
+            "type": "route",
+            "path": "inspector",
+            "file": "-virtual/inspector.tsx"
+          }
+        ]
+      }
+    ]
+  },
+  "routeFileIgnorePrefix": "-",
+  "quoteStyle": "double",
+  "semicolons": true
+}

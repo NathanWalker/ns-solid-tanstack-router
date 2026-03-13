@@ -1,6 +1,6 @@
-import { defineConfig, mergeConfig, UserConfig } from 'vite'
+import { defineConfig, UserConfig } from 'vite'
 import { solidConfig } from '@nativescript/vite/solid'
 
 export default defineConfig(({ mode }): UserConfig => {
-  return mergeConfig(solidConfig({ mode }), {})
+  return solidConfig({ mode })
 })  
