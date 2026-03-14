@@ -26,7 +26,7 @@
     "@nativescript/tailwind": "~2.1.0",
     "@nativescript/types": "~9.0.0",
     "@nativescript/visionos": "9.0.1",
-    "@nativescript/vite": "~2.0.0",
+    "@nativescript/vite": "^8.0.0-alpha.1",
     "@tanstack/router-plugin": "^1.166.0",
     "@tanstack/virtual-file-routes": "^1.161.4",
     "babel": "^6.23.0",
