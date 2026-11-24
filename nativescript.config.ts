@@ -6,8 +6,11 @@ export default {
   appResourcesPath: 'App_Resources',
   android: {
     v8Flags: '--expose_gc',
-    markingMode: 'none'
+    markingMode: 'none',
+  },
+  cli: {
+    additionalPathsToClean: ['.ns-vite-build'],
   },
   bundler: 'vite',
-  bundlerConfigPath: 'vite.config.ts'
+  bundlerConfigPath: 'vite.config.mts',
 } as NativeScriptConfig;
