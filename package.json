@@ -6,7 +6,7 @@
   "dependencies": {
     "@nativescript-community/solid-js": "^2.0.1",
     "@nativescript/core": "~9.1.4",
-    "@nativescript/tanstack-router": "^0.2.1",
+    "@nativescript/tanstack-router": "^0.2.2",
     "@solidjs/universal": "^2.0.3",
     "@solidjs/web": "^2.0.3",
     "@tanstack/history": "^1.162.5",
