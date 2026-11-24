@@ -2,14 +2,14 @@
 
 *Early Developer Preview*
 
-TanStack Router in a NativeScript app built with [SolidJS](https://www.solidjs.com/). It demonstrates how to set up routing, including nested routes and modals.
+TanStack Router in a NativeScript app built with [SolidJS 2](https://www.solidjs.com/). It demonstrates how to set up routing, including nested routes and modals.
 
 Learn more about TanStack Router with NativeScript: https://blog.nativescript.org/tanstack-router-for-nativescript
 
 ## Prerequisites
 
-- [Node.js](https://nodejs.org/) (version 22 or higher)
-- [NativeScript](https://docs.nativescript.org/setup/) (version 9 or higher)
+- [Node.js](https://nodejs.org/) (version 22.12 or higher)
+- [NativeScript](https://docs.nativescript.org/setup/) (CLI 9.1 or higher)
 
 ## Running the App
 

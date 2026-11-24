@@ -1,7 +1,7 @@
-import { Outlet } from "@tanstack/solid-router";
+import { createFileRoute, Outlet } from "@tanstack/solid-router";
 import { Link } from "@nativescript/tanstack-router/solid";
 
-export const Route = createFileRoute({
+export const Route = createFileRoute("/virtual")({
   component: VirtualRoutesLayout,
 });
 

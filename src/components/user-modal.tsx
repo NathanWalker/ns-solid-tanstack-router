@@ -6,7 +6,7 @@ const route = getRouteApi('/users/$userId')
 export default function UserModal() {
   const params = route.useParams()
   const data = useStableLoaderData(route.useLoaderData(), {
-    fallback: {
+    fallback: () => ({
       user: {
         id: params().userId,
         name: `User ${params().userId}`,
@@ -16,7 +16,7 @@ export default function UserModal() {
         location: 'Remote',
         followers: '0',
       },
-    },
+    }),
   })
 
   return (

@@ -25,7 +25,7 @@ export default function PostList() {
 
           <For each={data().posts}>
             {(post: any) => {
-              const author = data().users[post.authorId];
+              const author = () => data().users[post.authorId];
               return (
                 <stacklayout class="bg-white dark:bg-[#0f182d] rounded-[24] mt-4 p-4">
                   <gridlayout columns="108, *" rows="auto">
@@ -50,14 +50,14 @@ export default function PostList() {
                       <gridlayout columns="auto, *" rows="auto" class="mt-2">
                         <imagecacheit
                           col="0"
-                          src={author.avatarUrl}
+                          src={author().avatarUrl}
                           class="w-[28] h-[28] rounded-full"
                           stretch="aspectFill"
                           verticalAlignment="center"
                         />
                         <label
                           col="1"
-                          text={`${author.name} • ${post.readMinutes}`}
+                          text={`${author().name} • ${post.readMinutes}`}
                           class="text-[#8790a2] dark:text-[#9aa7c7] text-[13px] ml-2 leading-[3]"
                           textWrap={true}
                         />

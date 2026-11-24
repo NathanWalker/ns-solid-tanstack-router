@@ -1,32 +1,26 @@
 import { createMemo, type Accessor } from 'solid-js'
 
-interface StableLoaderDataOptions<T> {
-  fallback?: T
-}
+type Fallback<T> = T | (() => T)
+
+const resolveFallback = <T>(fallback: Fallback<T> | undefined): T | undefined =>
+  typeof fallback === 'function' ? (fallback as () => T)() : fallback
 
 export function useStableLoaderData<T>(
   loaderData: Accessor<T | undefined>,
-  options: { fallback: T },
+  options: { fallback: Fallback<T> },
 ): Accessor<T>
 export function useStableLoaderData<T>(
   loaderData: Accessor<T | undefined>,
-  options?: StableLoaderDataOptions<T>,
+  options?: { fallback?: Fallback<T> },
 ): Accessor<T | undefined>
 
 // Keeps the latest resolved loader snapshot to avoid transient undefined
 // values during route/backstack synchronization.
 export function useStableLoaderData<T>(
   loaderData: Accessor<T | undefined>,
-  options?: StableLoaderDataOptions<T>,
+  options?: { fallback?: Fallback<T> },
 ): Accessor<T | undefined> {
-  let lastResolved = loaderData() ?? options?.fallback
-
-  return createMemo(() => {
-    const current = loaderData()
-    if (current !== undefined) {
-      lastResolved = current
-    }
-
-    return lastResolved
-  }) as Accessor<T | undefined>
+  return createMemo<T | undefined>(
+    (prev) => loaderData() ?? prev ?? resolveFallback(options?.fallback),
+  )
 }

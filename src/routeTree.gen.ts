@@ -8,26 +8,19 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import type { CreateFileRoute, FileRoutesByPath } from "@tanstack/solid-router";
-
 import { Route as rootRouteImport } from "./routes/__root";
-import { Route as VirtualLayoutRouteImport } from "./routes/-virtual/layout";
-import { Route as PostsRouteImport } from "./routes/posts";
-import { Route as AboutRouteImport } from "./routes/about";
 import { Route as IndexRouteImport } from "./routes/index";
+import { Route as AboutRouteImport } from "./routes/about";
+import { Route as PostsRouteImport } from "./routes/posts";
+import { Route as VirtualLayoutRouteImport } from "./routes/-virtual/layout";
+import { Route as PostsDotpostIdRouteImport } from "./routes/posts.$postId";
+import { Route as UsersDotuserIdRouteImport } from "./routes/users.$userId";
 import { Route as VirtualIndexRouteImport } from "./routes/-virtual/index";
 import { Route as VirtualInspectorRouteImport } from "./routes/-virtual/inspector";
-import { Route as UsersDotuserIdRouteImport } from "./routes/users.$userId";
-import { Route as PostsDotpostIdRouteImport } from "./routes/posts.$postId";
 
-const VirtualLayoutRoute = VirtualLayoutRouteImport.update({
-  id: "/virtual",
-  path: "/virtual",
-  getParentRoute: () => rootRouteImport,
-} as any);
-const PostsRoute = PostsRouteImport.update({
-  id: "/posts",
-  path: "/posts",
+const IndexRoute = IndexRouteImport.update({
+  id: "/",
+  path: "/",
   getParentRoute: () => rootRouteImport,
 } as any);
 const AboutRoute = AboutRouteImport.update({
@@ -35,9 +28,24 @@ const AboutRoute = AboutRouteImport.update({
   path: "/about",
   getParentRoute: () => rootRouteImport,
 } as any);
-const IndexRoute = IndexRouteImport.update({
-  id: "/",
-  path: "/",
+const PostsRoute = PostsRouteImport.update({
+  id: "/posts",
+  path: "/posts",
+  getParentRoute: () => rootRouteImport,
+} as any);
+const VirtualLayoutRoute = VirtualLayoutRouteImport.update({
+  id: "/virtual",
+  path: "/virtual",
+  getParentRoute: () => rootRouteImport,
+} as any);
+const PostsDotpostIdRoute = PostsDotpostIdRouteImport.update({
+  id: "/$postId",
+  path: "/$postId",
+  getParentRoute: () => PostsRoute,
+} as any);
+const UsersDotuserIdRoute = UsersDotuserIdRouteImport.update({
+  id: "/users/$userId",
+  path: "/users/$userId",
   getParentRoute: () => rootRouteImport,
 } as any);
 const VirtualIndexRoute = VirtualIndexRouteImport.update({
@@ -49,16 +57,6 @@ const VirtualInspectorRoute = VirtualInspectorRouteImport.update({
   id: "/inspector",
   path: "/inspector",
   getParentRoute: () => VirtualLayoutRoute,
-} as any);
-const UsersDotuserIdRoute = UsersDotuserIdRouteImport.update({
-  id: "/users/$userId",
-  path: "/users/$userId",
-  getParentRoute: () => rootRouteImport,
-} as any);
-const PostsDotpostIdRoute = PostsDotpostIdRouteImport.update({
-  id: "/$postId",
-  path: "/$postId",
-  getParentRoute: () => PostsRoute,
 } as any);
 
 export interface FileRoutesByFullPath {
@@ -133,18 +131,11 @@ export interface RootRouteChildren {
 
 declare module "@tanstack/solid-router" {
   interface FileRoutesByPath {
-    "/virtual": {
-      id: "/virtual";
-      path: "/virtual";
-      fullPath: "/virtual";
-      preLoaderRoute: typeof VirtualLayoutRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
-    "/posts": {
-      id: "/posts";
-      path: "/posts";
-      fullPath: "/posts";
-      preLoaderRoute: typeof PostsRouteImport;
+    "/": {
+      id: "/";
+      path: "/";
+      fullPath: "/";
+      preLoaderRoute: typeof IndexRouteImport;
       parentRoute: typeof rootRouteImport;
     };
     "/about": {
@@ -154,11 +145,32 @@ declare module "@tanstack/solid-router" {
       preLoaderRoute: typeof AboutRouteImport;
       parentRoute: typeof rootRouteImport;
     };
-    "/": {
-      id: "/";
-      path: "/";
-      fullPath: "/";
-      preLoaderRoute: typeof IndexRouteImport;
+    "/posts": {
+      id: "/posts";
+      path: "/posts";
+      fullPath: "/posts";
+      preLoaderRoute: typeof PostsRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/virtual": {
+      id: "/virtual";
+      path: "/virtual";
+      fullPath: "/virtual";
+      preLoaderRoute: typeof VirtualLayoutRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/posts/$postId": {
+      id: "/posts/$postId";
+      path: "/$postId";
+      fullPath: "/posts/$postId";
+      preLoaderRoute: typeof PostsDotpostIdRouteImport;
+      parentRoute: typeof PostsRoute;
+    };
+    "/users/$userId": {
+      id: "/users/$userId";
+      path: "/users/$userId";
+      fullPath: "/users/$userId";
+      preLoaderRoute: typeof UsersDotuserIdRouteImport;
       parentRoute: typeof rootRouteImport;
     };
     "/virtual/": {
@@ -175,94 +187,7 @@ declare module "@tanstack/solid-router" {
       preLoaderRoute: typeof VirtualInspectorRouteImport;
       parentRoute: typeof VirtualLayoutRoute;
     };
-    "/users/$userId": {
-      id: "/users/$userId";
-      path: "/users/$userId";
-      fullPath: "/users/$userId";
-      preLoaderRoute: typeof UsersDotuserIdRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
-    "/posts/$postId": {
-      id: "/posts/$postId";
-      path: "/$postId";
-      fullPath: "/posts/$postId";
-      preLoaderRoute: typeof PostsDotpostIdRouteImport;
-      parentRoute: typeof PostsRoute;
-    };
   }
-}
-
-declare module "./routes/index" {
-  const createFileRoute: CreateFileRoute<
-    "/",
-    FileRoutesByPath["/"]["parentRoute"],
-    FileRoutesByPath["/"]["id"],
-    FileRoutesByPath["/"]["path"],
-    FileRoutesByPath["/"]["fullPath"]
-  >;
-}
-declare module "./routes/about" {
-  const createFileRoute: CreateFileRoute<
-    "/about",
-    FileRoutesByPath["/about"]["parentRoute"],
-    FileRoutesByPath["/about"]["id"],
-    FileRoutesByPath["/about"]["path"],
-    FileRoutesByPath["/about"]["fullPath"]
-  >;
-}
-declare module "./routes/posts" {
-  const createFileRoute: CreateFileRoute<
-    "/posts",
-    FileRoutesByPath["/posts"]["parentRoute"],
-    FileRoutesByPath["/posts"]["id"],
-    FileRoutesByPath["/posts"]["path"],
-    FileRoutesByPath["/posts"]["fullPath"]
-  >;
-}
-declare module "./routes/-virtual/layout" {
-  const createFileRoute: CreateFileRoute<
-    "/virtual",
-    FileRoutesByPath["/virtual"]["parentRoute"],
-    FileRoutesByPath["/virtual"]["id"],
-    FileRoutesByPath["/virtual"]["path"],
-    FileRoutesByPath["/virtual"]["fullPath"]
-  >;
-}
-declare module "./routes/posts.$postId" {
-  const createFileRoute: CreateFileRoute<
-    "/posts/$postId",
-    FileRoutesByPath["/posts/$postId"]["parentRoute"],
-    FileRoutesByPath["/posts/$postId"]["id"],
-    FileRoutesByPath["/posts/$postId"]["path"],
-    FileRoutesByPath["/posts/$postId"]["fullPath"]
-  >;
-}
-declare module "./routes/users.$userId" {
-  const createFileRoute: CreateFileRoute<
-    "/users/$userId",
-    FileRoutesByPath["/users/$userId"]["parentRoute"],
-    FileRoutesByPath["/users/$userId"]["id"],
-    FileRoutesByPath["/users/$userId"]["path"],
-    FileRoutesByPath["/users/$userId"]["fullPath"]
-  >;
-}
-declare module "./routes/-virtual/inspector" {
-  const createFileRoute: CreateFileRoute<
-    "/virtual/inspector",
-    FileRoutesByPath["/virtual/inspector"]["parentRoute"],
-    FileRoutesByPath["/virtual/inspector"]["id"],
-    FileRoutesByPath["/virtual/inspector"]["path"],
-    FileRoutesByPath["/virtual/inspector"]["fullPath"]
-  >;
-}
-declare module "./routes/-virtual/index" {
-  const createFileRoute: CreateFileRoute<
-    "/virtual/",
-    FileRoutesByPath["/virtual/"]["parentRoute"],
-    FileRoutesByPath["/virtual/"]["id"],
-    FileRoutesByPath["/virtual/"]["path"],
-    FileRoutesByPath["/virtual/"]["fullPath"]
-  >;
 }
 
 interface PostsRouteChildren {

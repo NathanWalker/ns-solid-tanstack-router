@@ -11,7 +11,7 @@ const route = getRouteApi("/posts/$postId");
 export default function PostDetail() {
   const params = route.useParams();
   const data = useStableLoaderData(route.useLoaderData(), {
-    fallback: {
+    fallback: () => ({
       post: {
         id: params().postId,
         category: "Loading",
@@ -31,7 +31,7 @@ export default function PostDetail() {
         avatarUrl: "https://i.pravatar.cc/400?img=12",
       },
       nextPostId: "1",
-    },
+    }),
   });
 
   return (
