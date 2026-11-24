@@ -81,7 +81,7 @@ export default function PostList() {
                       <Link to="/posts/$postId" params={{ postId: post.id }}>
                         <label
                           text="Read Story"
-                          class="text-white text-[16px] font-bold bg-[#11172a] rounded-[18] py-4 text-center"
+                          class="text-white text-[16px] font-bold bg-[#11172a] dark:bg-[#2b3a63] rounded-[18] py-4 text-center"
                         />
                       </Link>
                     </stacklayout>

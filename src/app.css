@@ -7,5 +7,17 @@
 }
 
 .ns-dark Page {
-  background-color: #1b1f28;
+  background-color: #070d1b;
+}
+
+/* The Page background shows through, so the bar blends into the content
+   below it. iOS keeps its native (large title) navigation bar. */
+.ns-android ActionBar {
+  background-color: transparent;
+  android-elevation: 0;
+  color: #1b1f28;
+}
+
+.ns-android.ns-dark ActionBar {
+  color: #f2f6ff;
 }
